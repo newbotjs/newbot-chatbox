@@ -1,7 +1,8 @@
 <template>
   <transition name="fade">
     <div>
-      <div class="chat-bubble" :class="{ agent: !isUser, user: isUser }" :style="cssVars">
+      <div class="chat-bubble" :class="{ agent: !isUser, user: isUser }">
+        <p class="time">{{ simpleDate }}</p>
         {{ text }}
       </div>
       <p class="agent-name" v-if="!isUser && agent">
@@ -14,17 +15,19 @@
 <script>
 export default {
   props: ["sender", "date", "text", "isUser", "agent"],
- computed: {
-    cssVars() {
-      return {
-        
+  computed: {
+      simpleDate() {
+        let date = this.date
+        if (typeof date == 'string') date = new Date(this.date)
+        const hour = date.getHours()
+        const minute = date.getMinutes()
+        return `${hour}:${minute}`
       }
-    }
- }
+  }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../../theme/scss/variables.scss";
 @import "../../../theme/scss/mixins.scss";
 
@@ -33,6 +36,11 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.time {
+  font-size: 10px;
+  margin: 0;
 }
 
 .chat-bubble {

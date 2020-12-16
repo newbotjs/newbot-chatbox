@@ -74,7 +74,7 @@ export default {
 }
 
 .footer {
-  position: absolute;
+  
   bottom: 0;
   box-sizing: border-box;
   padding: $space-small $space-slab;

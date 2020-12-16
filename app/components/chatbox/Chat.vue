@@ -20,7 +20,7 @@
               'agent-message': !obj.isUser,
             }"
           >
-            <div class="avatar-wrap" v-if="!obj.isUser && obj.agent">
+            <div class="avatar-wrap" v-if="!obj.isUser && obj.agent && obj.agent.avatar">
               <Avatar :src="obj.agent.avatar" />
             </div>
             <div class="message-wrap">
@@ -90,9 +90,9 @@ export default {
   mounted() {
     this.container = this.$refs["scrollable"];
     this.ps = new PerfectScrollbar(this.container);
-    /*this.$bus.$on("send", () => {
+    this.$bus.$on("loadMessages", () => {
       this.scrollToBottom();
-    });*/
+    });
     this.$bus.$on("reply", (output) => {
       // eslint-disable-next-line no-console
       let component = "";
@@ -119,6 +119,7 @@ export default {
       });
       this.scrollToBottom();
     });
+    this.scrollToBottom(false);
   },
   computed: {
     ...mapGetters(["messages", "length"]),
@@ -160,12 +161,12 @@ export default {
       }
       return false;
     },
-    scrollToBottom() {
+    scrollToBottom(smooth = true) {
       this.$nextTick(() => {
         this.container.scroll({
           top: 9999999,
           left: 0,
-          behavior: "smooth",
+          behavior: smooth ? "smooth" : undefined,
         });
       });
     },

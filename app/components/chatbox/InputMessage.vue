@@ -56,7 +56,6 @@ export default {
 .user-message-input {
   height: $space-large;
   resize: none;
-  padding-top: $space-small;
 }
 
 .chat-message--input {

@@ -13,7 +13,7 @@ export default {
       displayDate() {
           const start = moment().startOf('day')
           if (start.isSame(this.date)) {
-              return 'Today'
+              return `Aujourd'hui`
           }
           return this.date.from(start)
       }
