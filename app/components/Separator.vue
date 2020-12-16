@@ -27,6 +27,7 @@ export default {
 .date-separator {
   font-size: $font-size-default;
   color: $color-body;
+  color: var(--color);
   height: 50px;
   line-height: 50px;
   position: relative;

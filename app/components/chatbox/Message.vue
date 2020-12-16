@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div>
-      <div class="chat-bubble" :class="{ agent: !isUser, user: isUser }">
+      <div class="chat-bubble" :class="{ agent: !isUser, user: isUser }" :style="cssVars">
         {{ text }}
       </div>
       <p class="agent-name" v-if="!isUser && agent">
@@ -14,6 +14,13 @@
 <script>
 export default {
   props: ["sender", "date", "text", "isUser", "agent"],
+ computed: {
+    cssVars() {
+      return {
+        
+      }
+    }
+ }
 };
 </script>
 
@@ -31,9 +38,10 @@ export default {
 .chat-bubble {
   &.agent {
     background: $color-white;
+    background: var(--bubble-left-background-color);
     border-bottom-left-radius: $space-smaller;
     color: $color-body;
-
+    color: var(--bubble-left-text-color);
     .link {
       word-break: break-word;
       color: $color-newbot;
@@ -44,8 +52,10 @@ export default {
 .chat-bubble {
   @include light-shadow;
   background: $color-newbot;
+  background: var(--bubble-right-background-color);
   border-radius: $space-two;
   color: $color-white;
+  color: var(--bubble-right-text-color);
   display: inline-block;
   font-size: $font-size-default;
   line-height: 1.5;

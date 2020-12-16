@@ -5,7 +5,7 @@
     class="send-button"
     v-on="$listeners"
   >
-    <IconSend v-if="!loading" w="20px" h="20px" />
+    <IconSend v-if="!loading" w="30px" h="30px" style="opacity: 0.7" />
     
   </button>
 </template>

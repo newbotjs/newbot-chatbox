@@ -16,7 +16,7 @@
     </Chat>
     <footer class="footer" v-if="displayFooter">
       <div class="input-wrap">
-        <InputMessage  />
+        <InputMessage />
       </div>
     </footer>
   </div>
@@ -47,6 +47,12 @@ export default {
     avatarUrl() {
       return this.avatar
     }
+  },
+  created() {
+    const { styles } = this.$store.state.theme
+    for (let variable in styles) {
+      document.documentElement.style.setProperty('--' + variable, styles[variable])
+    } 
   }
 };
 </script>
@@ -62,13 +68,14 @@ export default {
   flex-direction: column;
   flex-wrap: nowrap;
   background: #f4f6fb;
+  background: var(--background);
   position: relative;
+  color: var(--color);
 }
 
 .footer {
   position: absolute;
   bottom: 0;
-  background: $color-white;
   box-sizing: border-box;
   padding: $space-small $space-slab;
   width: 100%;

@@ -50,11 +50,10 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../../theme/scss/variables.scss';
 
 .user-message-input {
-  border: 0;
   height: $space-large;
   resize: none;
   padding-top: $space-small;
@@ -83,5 +82,10 @@ export default {
 .button-wrap {
   display: flex;
   align-items: center;
+}
+
+.form-input {
+  background: var(--input-message-background);
+  color: var(--input-message-text-color);
 }
 </style>
